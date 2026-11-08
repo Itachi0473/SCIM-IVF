@@ -1,0 +1,29 @@
+dataset=SIFT1M original order
+base=D:\ivf_code_bundle_portable\build\experiment_data\sift1m_base.u8bin
+metric=squared_L2
+base_storage=exact uint8 (unsigned 8-bit SIFT descriptors)
+query_enabled=true
+initial_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\sift1m_prd_only_threshold_sweep_initial100k_nlist128_18x50k_shared_query1k_n20_step0p5_5to15_seed1234_20261108_155837\shared_initial_100k_nlist128_seed1234.index.bin
+queries=D:\ivf_code_bundle_portable\build\experiment_data\sift_query.fvecs
+truth=D:\ivf_code_bundle_portable\build\experiment_data\sift_groundtruth.ivecs (first 1,000 rows; top-10 IDs used for recall)
+query_input=official fvecs float32 interface
+topk=10
+query_set=first 1,000 official SIFT1M queries
+query_budget=N/20=50,000 total distance computations, including all centroid distances
+warmup=32 queries per variant, excluded from latency statistics
+query_timing=steady_clock around search_with_options only; p99 nearest-rank percentile
+initial_index=first 100000 input-order vectors; KMeans nlist=128, seed=1234, 10 iterations
+updates=18 sequential input-order batches x 50000; insertion-only; no intermediate queries
+final_active_vectors=1,000,000
+run_mode=prd-only
+maintenance=after each complete insertion batch; PRD GlobalFitOnly threshold=0.055
+full=PRD+load split/merge+capacity split+local split reassignment+global center refresh
+prd_only=PRD split only; load split, capacity split, load merge, local split reassignment, and global center refresh disabled
+ablation_no_capacity=PRD+load split/merge, capacity split disabled
+ablation_no_prd=load split/merge+capacity split, PRD disabled
+ablation_no_load_balance=PRD+capacity split; both load splits and short-list merges disabled
+enabled_modules=PRD split only
+disabled_modules=load split, capacity split, short-list merge, local split reassignment, global center mean refresh
+global_center_mean_refresh=disabled
+local_split_reassignment=disabled
+short_partition_reassignment=disabled (merging is off)

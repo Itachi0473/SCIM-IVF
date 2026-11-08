@@ -1,6 +1,6 @@
 # SCIM paper reproduction materials
 
-The archive is organized by the experiments in the current local manuscript. Historical code/data may use the name Triad.
+The archive is organized by the experiments in the current local manuscript. Historical code/data may use the name Triad. Original files were copied, not moved.
 
 - `01_Source/`: the two SCIM core files, required IVF/SIMD dependencies, paper experiment runners, preparation helpers and calibration inputs. CMake includes the current LIRE, DeDrift and size-preserving-control entries.
 - `02_Experiments/01_Motivation`: residual/growth and capacity tradeoff evidence.
@@ -16,4 +16,4 @@ The archive is organized by the experiments in the current local manuscript. His
 
 Start with `04_Reproduction/Reproduction_Status.md`, then `Datasets.md`. Windows/C++17/CMake/Ninja/GCC with AVX2/FMA are required for the recorded environment; Python preparation helpers require NumPy, and Faiss rebuild helpers require faiss-cpu. Build with `./04_Reproduction/Build.ps1`. Numeric reporting conventions: recall source fractions versus manuscript percent; update=insert+delete+maintenance; sample standard deviation across accepted timing runs.
 
-No raw neighbor outputs, per-query logs, vectors, index binaries, executables, trial runs, unrelated experiments or paper PDFs are included. FILE_MANIFEST.csv contains the archive file sizes and SHA256 hashes. Machine-local provenance is kept outside the distributable archive. 
+No raw neighbor outputs, per-query logs, vectors, index binaries, executables, trial runs, unrelated experiments or paper PDFs are included. FILE_MANIFEST.csv contains the archive file sizes and SHA256 hashes. Machine-local provenance is kept outside the distributable archive. The archive has not been published online.
