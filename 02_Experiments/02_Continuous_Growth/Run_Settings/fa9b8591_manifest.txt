@@ -1,0 +1,9 @@
+experiment=full-data IVF-Flat rebuild references for missing table cells
+training_fraction=0.10; training_seed=1234; uniform without replacement
+faiss_kmeans_iterations=25; max_points_per_centroid=1024
+build_threads=16; query_threads=16; metric=squared_L2
+YFCC: official first 10k queries; budget=N/100=100000
+Deep: query.public.10K; budget=N/100=100000
+MSTuring: testQuery10K; budget=N/20=500000
+Methods: YFCC Quake K1122, LIRE K3926; Deep Quake K1033, LIRE K3851, IVF K1000; MSTuring Quake K2309, LIRE K4121, IVF K1000
+All 10M vectors assigned to every rebuilt IVF; snapshots not retained.

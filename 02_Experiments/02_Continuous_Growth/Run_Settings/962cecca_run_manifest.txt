@@ -1,0 +1,19 @@
+experiment=Triad fixed-budget insert-heavy workload (IH)
+dataset=E:\MSTuring10M\shuffled_input_seed1234_20261025\msturing-10M-shuffled-seed1234.fbin
+queries=C:\Users\29188\Downloads\testQuery10K.fbin
+rows=10000000; dimension=100; metric=squared L2
+initial_vectors=1000000; initial_nlist=1000
+insert_batch=10000; insert_ops=900
+query_schedule=after every 9 insert batches; query_stages=100; queries_per_stage=10000
+topk=100
+query_budget=floor(current active indexed vectors/20), including centroid and vector distances
+Triad PRD threshold=0.075
+short-list merge cutoff=0.2*sqrt(current active N)
+load split cutoff=2.2*T; capacity split=1.05*sqrt(N), active only while nlist<=sqrt(N)
+PRD criterion=GlobalFitOnly; PRD action=split directly; load merge+split enabled
+local split reassignment radius=50; iterations=1
+global center refresh=all centers to stored partition means after each update batch
+initial_index_reused=true; initial_index=E:\MSTuring10M\experiment_results\triad_ablation_final_aps09_seed1234_20261026\initial_1m_nlist1000_seed1234_triand.index.bin
+LVQ=false; query early-stop=false; seed=1234
+groundtruth=reused exact top-100 for each active prefix
+final_index_saved=false

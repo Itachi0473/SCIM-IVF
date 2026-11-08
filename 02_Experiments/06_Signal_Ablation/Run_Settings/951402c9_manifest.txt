@@ -1,0 +1,22 @@
+dataset=SIFT1M sorted by full-dataset PC1 ascending
+base=build\experiment_data\sift1m_pc1_sorted.u8bin
+queries=build\experiment_data\sift_query.fvecs
+truth=build\sift1m_frozen_query_sse_metrics\pca_order\exact_truth_insert_only\stage_19_top10_l2.ivecs (first 1,000 rows; top-10 IDs used for recall)
+metric=squared_L2
+base_storage=exact uint8 (unsigned 8-bit SIFT descriptors)
+query_input=official fvecs float32 interface
+topk=10
+initial_index=first 50,000 input-order vectors; KMeans nlist=64, seed=1234, 10 iterations
+updates=19 sequential input-order batches x 50,000; insertion-only; no intermediate queries
+final_active_vectors=1,000,000
+query_set=first 1,000 official SIFT1M queries
+query_budget=N/20=50,000 total distance computations, including all centroid distances
+warmup=32 queries per variant, excluded from latency statistics
+query_timing=steady_clock around search_with_options only; p99 nearest-rank percentile
+maintenance=after each complete insertion batch; PRD GlobalFitOnly threshold=0.075; short-list merge cutoff=n<0.20*sqrt(N); load split threshold=n>2.20*T, T=N/K; capacity split iff K<=sqrt(N) and n>1.05*sqrt(N)
+split_local_reassignment=radius 50 additional neighbors, 1 assignment pass; all-center mean refresh after each maintenance batch; no full-vector reassignment
+short_partition_reassignment=route each source vector to nearest other live centroid; load split remains n>2.20*T; merge destination checks and later capacity/PRD/load stages unchanged
+full=PRD+load split/merge+capacity split
+ablation_no_capacity=PRD+load split/merge, capacity split disabled
+ablation_no_prd=load split/merge+capacity split, PRD disabled
+ablation_no_load_balance=PRD+capacity split; both load splits and short-list merges disabled

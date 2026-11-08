@@ -1,0 +1,3 @@
+method,nlist,nprobe,query_count,topk,recall_at_10,mean_scanned_vectors,mean_query_ms,p95_query_ms,p99_query_ms,build_or_insert_ms,prd_splits
+Full IVF-Flat,64,4,1000,10,0.92980000,65199.59200000,10.45438720,14.62280000,18.60530000,513.84340000,0
+PRD-only incremental,64,4,1000,10,0.92840000,69354.98000000,2.29503650,3.51010000,4.45080000,698.98640000,0

@@ -1,0 +1,38 @@
+{
+  "experiment": "DEEP-1M nine controlled drift scenarios",
+  "cases": [
+    "G",
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "C1",
+    "C2"
+  ],
+  "seed": 1234,
+  "base_count": 1000000,
+  "initial_count": 500000,
+  "inserted_count": 500000,
+  "batch_size": 5000,
+  "steps": 100,
+  "query_count": 1000,
+  "dimension": 96,
+  "metric": "squared L2 on unit-normalized post-shift vectors",
+  "ground_truth_computed": true,
+  "scenario_notes": {
+    "G": "no drift",
+    "A1": "query-only gradual translation in coordinate 0",
+    "A2": "query-only gradually increasing Gaussian noise",
+    "B1": "insert-only cumulative shift along a fixed direction every 5K rows; queries use final shifted distribution",
+    "B2": "insert-only cumulative random-direction shift every 5K rows; queries use final shifted distribution",
+    "B3": "insert-only cumulative random-direction shift every 30K rows; queries use final shifted distribution",
+    "B4": "same inserted vectors as B3, but queries stay in the original distribution",
+    "C1": "small insert/query shift alternates on/off every 5K rows",
+    "C2": "large insert/query shift alternates on/off every 5K rows"
+  },
+  "interpretation": "paper-inspired controlled scenarios, not official FreewayML data",
+  "ground_truth_path": "truth",
+  "ground_truth_metric": "squared_l2"
+}

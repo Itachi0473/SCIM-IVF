@@ -1,0 +1,2 @@
+indexed_vectors,nlist,training_rows,training_fraction,query_count,budget_per_query,recall_at_10,recall_at_100,build_seconds,query_seconds,query_threads
+10000000,5308,1000000,0.1,10000,500000,0.92389,0.872564,406.7199075000244,151.2185478999745,16

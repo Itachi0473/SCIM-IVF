@@ -1,0 +1,16 @@
+method=DeDrift-Hybrid; uncompressed Section 5.1 adaptation
+data_root=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_9scenarios_seed1234
+initial_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_dedrift_hybrid_initial_restore_seed1234_20261106\shared_initial_500k_nlist512_seed1234.index.bin
+truth_root=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_quake_tau250_radius50_n100_q16_parallelfeedback_verified_20261030\_prepared_truth
+K=512 fixed; k=4; local_kmeans_iterations=10; seed=1234
+maintenance=once after every insertion batch; Lazy mean update then Split; stage0 has no maintenance
+query_budget=N/100 including 512 center distances; threads=16; no warmup or early stopping
+stages=100; queries_per_stage=1000; case=all
+mean_recall=stages 1..last, excluding stage0
+payload=96-D FP32 as in existing DEEP-1M experiments; packed vectors in each posting
+Lazy uses exact sufficient-statistic mean updates; memberships unchanged until Split
+k2=ceil(sum of k largest sizes / global median size); jointly recluster largest + smallest lists
+k2 safety cap=K; raw/used/cap flag logged for every stage
+construction, validation and query costs excluded from update cost
+no index snapshots, per-query logs, or returned-neighbor arrays saved
+initial_build_seed=1234; local_kmeans_seed=deterministic derivation from base seed 1234 and stage/k2 as implemented in the supplied runner; no runtime tuning.

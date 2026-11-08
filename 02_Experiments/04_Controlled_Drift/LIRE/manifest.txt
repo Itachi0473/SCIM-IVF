@@ -1,0 +1,20 @@
+experiment=Current LIRE policy on Deep-1M FreewayML nine scenarios
+data_root=.\build\experiment_data\deep1m_freewayml_9scenarios_seed1234
+truth_root=.\build\experiment_data\deep1m_freewayml_quake_tau250_radius50_n100_q16_parallelfeedback_verified_20261030
+cases=G,A1,A2,B1,B2,B3,B4,C1,C2
+initial_vectors=500000; initial_nlist=512; seed=1234; kmeans_iterations=10
+updates=100 x 5000; query at initial stage and after each update
+LIRE=max_partition_size=1000; min_partition_size=32; local_refinement_radius=50; iterations=1
+query_count=1000 at every stage; budget=floor(current N/100), including center distances; query_threads=16
+query_metric=squared L2; source vectors are individually normalized FP32; LVQ=false; early_stop=false
+common_initial=trained once on G's first 500k, verified identical across all scenario prefixes; reused by value copy
+initial_LIRE_size_repair=applied once to shared initial index before scenario copies
+staged_truth=DLQTRTH1, 101 stages x 1000 queries x top10; all nine files verified before run
+run_mode=full (all nine, stage 0-100)
+index_snapshots_saved=false
+shared_build_ms=21415.8
+initial_maintenance_ms=2692.29
+initial_nlist_after_lire=704
+initial_splits=192
+initial_small_partitions_removed=0
+initial_small_vectors_routed=0

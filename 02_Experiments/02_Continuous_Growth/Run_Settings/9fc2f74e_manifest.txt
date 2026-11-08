@@ -1,0 +1,17 @@
+workload=Quake Table 3 insert-heavy (IH), deterministic insert operations followed by query operation
+dataset_rows=10000000
+dimension=192
+query_metric=squared L2
+maintenance_metric=squared L2
+initial_vectors=1000000
+initial_nlist=1000
+insert_batch=10000
+insert_operations=900
+query_operations=100
+insert_ops_per_query=9
+queries_per_query_operation=10000
+top_k=100
+per-query total distance budget=floor(indexed_vectors/100), including centroid and vector comparisons
+query order=the configured query sample is reused for each query operation
+LVQ=false
+seed=1234

@@ -1,0 +1,14 @@
+experiment=10M LIRE full insert-heavy staged workload
+dataset=C:\Users\29188\Downloads\YFCC10m\base.10M.u8bin
+queries=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\query.first10k.official.u8bin
+stage_truth=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\groundtruth_stage_top100.bin
+rows=10000000; dimension=192; metric=squared L2; normalization=none
+initial_vectors=1000000; initial_nlist=1000; seed=1234
+inserts=900 batches x 10000; query after each 9 batches; 100 query stages
+queries_per_stage=10000; topk=100; exact prefix truth
+query_budget=floor(current indexed vectors/100), centroid and vector distances included
+query_threads=16; APS=false; early_stop=false; LVQ=false; warmup=none
+shared_initial_index=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_triad_quake_lire_first10k_n100_seed1234_verified_20261030\shared_initial_1m_nlist1000.index.bin
+LIRE=max_partition_size=3200; min_partition_size=32; local refinement radius=50; one assignment pass after all splits in each insert-batch maintenance
+maintenance=once after each insert batch; short partition vectors are reassigned, not deleted; no query-time maintenance
+final_index_saved=false

@@ -1,0 +1,11 @@
+method=Quake cost-aware maintenance port
+initial_index_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\glove100_random_delete_40x20k_nlist1100_seed1234_20261027\shared_initial_index.ivfidx
+initial_index=shared GloVe100-angular index; 1,183,514 vectors; nlist=1100; normalized FP32; KMeans 10 iterations; seed=1234
+deletions=40 batches x 20,000 unique IDs; fixed seed=1234; same schedule and exact stage truths for both methods
+query=1,000 official SIFT queries per stage; Recall@10; exact stage truth; budget=floor(active_vectors/20), total centroid+vector distance calculations; early stop off
+query timing=32 warmups, then 1,000 measured queries; update timing excludes query evaluation
+data-preservation=maintenance preserves all still-active vectors; partition deletions reassign their live vectors to surviving centroids
+policy=cost model; alpha=0.9; rolling query-hit window=1000; split/delete threshold=50ns; min partition size=32; delete rejection enabled
+cost profile=measured on this host using normalized FP32 GloVe100 L2 scans and top-10 heap; k=10; 5 trials per source grid point
+split=two-way project IVF split; local refinement radius=25 including seed; iterations=3; centroid refresh before maintenance
+hit-rate scan-fraction denominator=initial 1M vector count, matching the Quake tracker

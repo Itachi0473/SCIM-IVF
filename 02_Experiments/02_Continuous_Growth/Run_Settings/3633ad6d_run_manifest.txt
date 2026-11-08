@@ -1,0 +1,14 @@
+experiment=10M LIRE full insert-heavy staged workload
+dataset=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+stage_truth=E:\Deep10M\deep10m_triad_quake_lire_100stages_n20_lire1000_seed1234_20261028\groundtruth_stage_top100.bin
+rows=10000000; dimension=96; metric=squared L2; normalization=none
+initial_vectors=1000000; initial_nlist=1000; seed=1234
+inserts=900 batches x 10000; query after each 9 batches; 100 query stages
+queries_per_stage=10000; topk=100; exact prefix truth
+query_budget=floor(current indexed vectors/100), centroid and vector distances included
+query_threads=16; APS=false; early_stop=false; LVQ=false; warmup=none
+shared_initial_index=D:\ivf_code_bundle_portable\build\experiment_data\deep10m_triad_quake_lire_final_n20_20261028\initial_1m_nlist1000.index.bin
+LIRE=max_partition_size=3200; min_partition_size=32; local refinement radius=50; one assignment pass after all splits in each insert-batch maintenance
+maintenance=once after each insert batch; short partitions deleted with their vectors; no query-time maintenance
+final_index_saved=false

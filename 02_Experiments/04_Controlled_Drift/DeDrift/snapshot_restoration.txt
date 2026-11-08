@@ -1,0 +1,10 @@
+status=restored_and_verified
+original_snapshot_path=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_triad_ablation_B1_C2_seed1234_finalAPS_warmup100_20261026\shared_initial_500k_nlist512_seed1234.index.bin
+original_snapshot_status=missing; cleanup_deleted_index_snapshots_20261104.csv confirms it was deleted
+reconstruction_source=D:\ivf_code_bundle_portable\desktop_simd_ivf\experiments\msturing_ih_runner.cpp; original mode --deep1m-freewayml-triad-ablation-final-aps
+source_vectors=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_9scenarios_seed1234\B1\base.fbin; first 500000 rows, unchanged order and FP32 values
+rebuild=AdaptiveHierarchicalIvf::train; K=512; seed=1234; squared L2; 10 K-means iterations; one worker; FP32; LVQ/uint8/angular/automatic maintenance off
+reconstructed_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_dedrift_hybrid_initial_restore_seed1234_20261106\shared_initial_500k_nlist512_seed1234.index.bin
+snapshot_integrity=500000 active IDs covered exactly once; 512 nonempty partitions
+stage0_crosscheck=all nine cases, 1000 queries each, N/100 budget; Recall@10 exactly matches the prior shared-index experiment: G/A1/A2/C1/C2=0.8243, B1=0.5881, B2=0.4505, B3=0.3881, B4=0.8243
+note=reconstructed deterministically from the original recorded build code and parameters; it is not the recovered original binary. The exact match of all nine stage-0 recalls is the available output-level check.

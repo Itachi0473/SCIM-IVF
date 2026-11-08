@@ -1,0 +1,13 @@
+experiment=full-data IVF-Flat rebuild references, recall-only
+faiss_version=1.15.1
+training_fraction=0.1
+training_seed=1234
+training_sample_rng=numpy.default_rng(PCG64), without replacement
+faiss_kmeans_iterations=25
+faiss_kmeans_max_points_per_centroid=1024
+build_threads=16
+query_threads=16
+query_budget=100000 total distances/query, including K center distances
+metric=squared_L2
+search=coarse-centroid distance order then exact vector distances
+index_snapshots=not retained; disk-backed temporary postings removed after each method

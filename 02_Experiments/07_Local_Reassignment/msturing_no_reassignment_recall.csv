@@ -1,0 +1,2 @@
+method,active_vectors,queries,topk,recall_at_10,recall_at_100
+triad_no_local_reassignment,10000000,10000,100,0.89881,0.835189

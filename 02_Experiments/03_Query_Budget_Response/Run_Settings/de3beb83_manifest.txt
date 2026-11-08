@@ -1,0 +1,11 @@
+method=Quake local port
+split_threshold_ns=250
+delete_threshold_ns=250
+alpha=0.9
+query_hit_window=1000
+local_refinement_radius=50
+local_refinement_iterations=1
+query_metric=squared L2
+maintenance_metric=squared L2
+seed=1234
+query_policy=fixed total-distance budget=floor(active_vectors/20)

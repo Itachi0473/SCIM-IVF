@@ -1,0 +1,10 @@
+method=SPFresh-LIRE deletion-only port
+initial_index_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\glove100_random_delete_40x20k_nlist1100_seed1234_20261027\shared_initial_index.ivfidx
+initialization=reuse the shared index's 1100 centroids and vector-to-leaf ownership; before stage 0, run LIRE capacity maintenance until every posting has <=1000 vectors
+initial_capacity_pass=max posting before=2843; after=999; nlist after=1658; elapsed_ms=215827; splits=558; NPA candidates=18880733; reassigned vectors=222403
+initial_capacity_pass_cost_is_reported_separately_from_deletion_batches=true
+data=GloVe100-angular; 1,183,514 x 100 normalized FP32; metric=squared L2 (angular-equivalent ranking)
+deletions=40 batches x 20,000 unique IDs; same fixed-seed schedule and per-stage exact truths as Quake
+policy=split when posting size >1000; balanced 2-way split with 5 Lloyd-style refinement passes; candidate neighborhood=64 nearest leaves around old center; NPA candidate check then nearest-center reassignment; repeat until all postings <=1000; empty postings removed; no underfull merge
+query=1000 official queries per stage; recall@10; total distance budget=floor(active_vectors/20), including centroid distances; early stopping off; 32 warmups
+query timing=single-threaded steady_clock around query search

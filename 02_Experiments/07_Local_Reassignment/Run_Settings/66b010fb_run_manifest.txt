@@ -1,0 +1,17 @@
+experiment=Triad, Quake, and LIRE on Deep10M_2 insert-heavy workload
+base=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+stage_truth=E:\Deep10M\deep10m_triad_quake_lire_100stages_n20_lire1000_seed1234_20261028\groundtruth_stage_top100.bin
+official_final_truth=C:\Users\29188\Downloads\Deep10M_2\groundtruth.public.10K.ibin
+base=10000000x96 FP32; query_metric=squared L2; original file order; no normalization
+initial_vectors=1000000; initial_nlist=1000; insert_batches=900 x 10000
+query_schedule=100 stages, each after 9 insert batches; 10000 queries/stage; same query set reused
+query_budget=floor(active_vectors/20) total distance computations/query, centroid computations included
+topk=100; LVQ=false; early_stop=false; APS=false; warmup=none; seed=1234
+shared_initial_index=D:\ivf_code_bundle_portable\build\experiment_data\deep10m_triad_quake_lire_final_n20_20261028\initial_1m_nlist1000.index.bin
+Triad=full policy; PRD=0.075; load split/merge threshold=2.2T / short cutoff <0.2*sqrt(N); capacity split=1.05*sqrt(N) while nlist<=sqrt(N); PRD direct split; local split reassignment radius=50, one iteration; global centers refreshed to stored means after each insert batch
+Quake=split and delete tau=250ns; alpha=0.9; query hit window=1000; min partition=32; local refinement radius=50; one iteration
+LIRE=Quake source size policy; max partition size=1000; min partition=32; after any batch with splits, reassign locally around both child centers with radius=50 (including seeds), one assignment pass; small partition vectors deleted
+LIRE maintenance is invoked once after every insert batch; all splits in that maintenance call are performed before its local reassignment pass
+exact_truth=100 per-stage prefixes computed by brute-force squared L2; final stage checked against supplied official top-100
+final_indexes_saved=false

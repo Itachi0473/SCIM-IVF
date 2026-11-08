@@ -1,0 +1,16 @@
+experiment=project-owned IVF-Flat insert-heavy full staged-query run
+status=complete
+dataset=Deep10M
+base=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+truth=E:\Deep10M\deep10m_triad_quake_lire_100stages_n20_lire1000_seed1234_20261028\groundtruth_stage_top100.bin
+initial_snapshot=D:\ivf_code_bundle_portable\build\experiment_data\deep10m_triad_quake_lire_final_n20_20261028\initial_1m_nlist1000.index.bin
+source_rows=10000000;dimension=96;payload=float32;metric=squared_L2
+initial_vectors=1000000;initial_nlist=1000;insert_batches=900;batch_size=10000
+query_every_insert_batches=9;query_stages=100;queries_per_stage=10000;topk=100
+query_budget=floor(active_vectors/100), includes centroid and vector distances; query_threads=16
+index=custom IvfFlat;initial codebook reused from saved PRD snapshot; raw initial vectors routed into IVF-Flat lists;no retraining;no maintenance;no LVQ;no APS;no early stop
+initial_import_seconds=6.4258222
+cumulative_incremental_add_seconds=73.5441627
+cumulative_staged_query_wall_seconds=1382.977472
+final_index_saved=false

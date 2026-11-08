@@ -1,0 +1,17 @@
+experiment=Triad on shuffled MSTuring-10M; insert all batches, then one final fixed-budget query
+dataset=E:\MSTuring10M\shuffled_input_seed1234_20261025\msturing-10M-shuffled-seed1234.fbin
+queries=C:\Users\29188\Downloads\testQuery10K.fbin
+exact_stage_truth=E:\MSTuring10M\experiment_results\msturing10m_ih_triad_prd0075_merge02sqrt_n20_seed1234_20261027\groundtruth_stage_top100.bin
+rows=10000000; dimension=100; metric=squared L2
+shuffle_seed=1234; initial_vectors=1000000; initial_nlist=1000
+insert_batch=10000; insert_ops=900; queries=10000; topk=100
+query_schedule=one final query stage after all 900 insertions; no intermediate queries
+query_budget=floor(final active vectors/20)=500000 total distance computations per query
+Triad PRD threshold=0.075; short-list merge cutoff=0.2*sqrt(current active N)
+load split cutoff=2.2*T; capacity split=1.05*sqrt(N), active only while nlist<=sqrt(N)
+PRD criterion=GlobalFitOnly; PRD action=split directly; load merge+split enabled
+local split reassignment=disabled (radius 0); required split/merge vector routing retained
+global center refresh=all centers to stored partition means after each update batch
+initial_index_reused=true; initial_index=E:\MSTuring10M\experiment_results\triad_ablation_final_aps09_seed1234_20261026\initial_1m_nlist1000_seed1234_triand.index.bin
+LVQ=false; query early-stop=false; warmup=none; seed=1234
+final_index_saved=false

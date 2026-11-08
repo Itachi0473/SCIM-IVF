@@ -1,0 +1,15 @@
+dataset=GloVe100-angular ANN-Benchmarks, 1,183,514 x 100 normalized FP32 base
+base=D:\ivf_code_bundle_portable\build\experiment_data\glove100_angular_nlist_sweep_fixed50k_seed1234_data\base_normalized.f32
+query_sample=D:\ivf_code_bundle_portable\build\experiment_data\glove100_angular_nlist_sweep_fixed50k_seed1234_data\queries_normalized.fvecs (first 1,000 official queries)
+deletion_schedule=D:\ivf_code_bundle_portable\build\experiment_data\glove100_random_delete_40x20k_seed1234_20261027\deletion_batches.csv
+groundtruth_dir=D:\ivf_code_bundle_portable\build\experiment_data\glove100_random_delete_40x20k_seed1234_20261027\exact_truth
+initial_index=shared 1,183,514-vector GloVe index; nlist=1100; KMeans 10 iterations; seed=1234; FP32 vectors
+updates=40 deletion-only batches x 20,000 unique vector IDs; 800,000 total removed; no inserts
+maintenance=once after each deletion batch; PRD GlobalFitOnly threshold=0.075; load split threshold=2.20*T; short-list merge cutoff=0.20*sqrt(N); capacity split uses 1.05*sqrt(N) while K<=sqrt(N)
+split_local_refinement=radius 50, one assignment pass
+centers=refresh all live centroids to means after each maintenance batch
+storage=exact normalized FP32 vectors; centroids/statistics FP32; distance=squared L2 (angular-equivalent ranking)
+query=1000 queries after every stage, after maintenance; Recall@10 against exact stage top-10
+query_budget=floor(active_vectors/20) total distance computations, including centroid comparisons; early stopping disabled; 32 warmup queries excluded from latency
+update_timing=delete, maintenance, and all-center refresh reported separately and combined; excludes query measurement
+initial_training_time is reported separately in stage 0

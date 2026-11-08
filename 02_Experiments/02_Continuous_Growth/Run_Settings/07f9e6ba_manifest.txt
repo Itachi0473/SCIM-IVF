@@ -1,0 +1,20 @@
+experiment=full-data IVF-Flat rebuild references, recall-only
+faiss_version=1.15.1
+training_fraction=0.1
+training_seed=1234
+training_sample_rng=numpy.default_rng(PCG64), without replacement
+faiss_kmeans_iterations=25
+faiss_kmeans_max_points_per_centroid=1024
+build_threads=16
+query_threads=16
+query_budget=100000 total distances/query, including K center distances
+metric=squared_L2
+search=coarse-centroid distance order then exact vector distances
+index_snapshots=not retained; disk-backed temporary postings removed after each method
+methods_and_nlist=YFCC-10M:Triad=3179,Quake=1715,LIRE=12437;Deep10M:Triad=3163,LIRE=12224
+YFCC_base=C:\Users\29188\Downloads\YFCC10m\base.10M.u8bin
+YFCC_queries=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\query.first10k.official.u8bin (official query rows 0..9999)
+YFCC_truth=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\groundtruth_stage_top100.bin (final stage 99)
+Deep10M_base=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+Deep10M_queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+Deep10M_truth=E:\Deep10M\deep10m_triad_quake_lire_100stages_n20_lire1000_seed1234_20261028\groundtruth_stage_top100.bin (final stage 99)

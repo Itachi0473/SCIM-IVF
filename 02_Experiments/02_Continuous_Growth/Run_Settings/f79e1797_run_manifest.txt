@@ -1,0 +1,17 @@
+experiment=YFCC10M Triad, Quake, and LIRE staged insert-heavy comparison
+base=C:\Users\29188\Downloads\YFCC10m\base.10M.u8bin
+queries=.\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\query.first10k.official.u8bin
+truth=.\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\groundtruth_stage_top100.bin
+base=10M x 192 uint8; original order; squared L2; no normalization
+query_selection=official query.public.100K rows 0..9999
+initial_vectors=1M; initial_nlist=1000; kmeans_seed=1234
+insertions=900 batches x 10000; query every 9 insert batches; 100 query stages
+active_vectors_at_query_stages=1.09M,1.18M,...,10M
+queries_per_stage=10000; topk=100; exact stage truth reused
+query_budget=floor(active_vectors/100), center and vector distances included
+query_threads=16; APS=false; early_stop=false; LVQ=false; query_warmup=none
+shared_initial_index=.\build\experiment_data\yfcc10m_triad_quake_lire_first10k_n100_seed1234_verified_20261030\shared_initial_1m_nlist1000.index.bin
+Triad=PRD 0.075 direct split; load split 2.2T; merge below 0.2*sqrt(N); capacity split 1.05*sqrt(N) while nlist<=sqrt(N); split-local reassignment radius 50, one pass; move centers to stored cluster means after each insertion batch
+Quake=split/delete tau 250ns; alpha 0.9; query-hit window 1000; min cluster 32; local refinement radius 50, one pass
+LIRE=Quake size-threshold policy; max partition size 1000; min cluster 32; one unified local reassignment pass radius 50 after splits; short clusters and their vectors deleted
+methods_run_sequentially=Triad,Quake,LIRE

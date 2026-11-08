@@ -1,0 +1,10 @@
+workload=900-batch insertion-only maintenance-cost run
+query_operations=0
+initial_vectors=1000000
+initial_nlist=1000
+insert_batch=10000
+insert_operations=900
+seed=1234
+LVQ=false
+method=triad
+Triad=PRD=0.075; load split=2.2T; merge<0.2*sqrt(N); capacity=1.05*sqrt(N) while K<=sqrt(N); split-local reassignment radius=50; iterations=1; global center refresh after every insert batch

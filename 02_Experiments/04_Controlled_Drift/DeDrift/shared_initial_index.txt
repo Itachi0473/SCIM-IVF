@@ -1,0 +1,14 @@
+snapshot=restored DEEP-1M FreewayML shared initial index
+restoration_source=original build block in msturing_ih_runner.cpp, mode --deep1m-freewayml-triad-ablation-final-aps
+data_source=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_9scenarios_seed1234\B1\base.fbin
+rows_used=first 500000
+dimension=96
+training=AdaptiveHierarchicalIvf::train; squared L2; K-means iterations=10; seed=1234; worker_threads=1
+storage=FP32; LVQ=false; uint8=false; angular_metric=false; automatic_maintenance=false
+saved_config=PRD=0.05; GlobalFitOnly; load_split_fraction=2.2; capacity_growth_split_factor=2.5; capacity_sqrt_n_split_multiplier=1.05; split_local_refinement_radius=50; split_local_refinement_iterations=1
+validated_size=500000
+validated_nlist=512
+validated_unique_memberships=500000
+empty_partitions=0
+initial_build_seconds=21.038613
+note=source and parameters match the recorded original snapshot construction; binary snapshot had previously been removed, so this is a deterministic reconstruction, not the original binary

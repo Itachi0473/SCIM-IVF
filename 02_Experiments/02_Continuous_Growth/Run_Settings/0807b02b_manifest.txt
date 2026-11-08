@@ -1,0 +1,10 @@
+workload=900-batch insertion-only maintenance-cost run
+query_operations=0
+initial_vectors=1000000
+initial_nlist=1000
+insert_batch=10000
+insert_operations=900
+seed=1234
+LVQ=false
+method=lire
+LIRE=max_partition_size=3200; min_partition_size=32; radius=50; one assignment pass after splits; maintenance after every insert batch

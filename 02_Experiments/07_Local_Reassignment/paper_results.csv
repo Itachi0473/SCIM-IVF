@@ -1,0 +1,5 @@
+﻿dataset,configuration,recall10_percent,recall100_percent,final_K,maintenance_s,update_s
+MSTuring10M,Full,90.586,84.538,3163,444.4,668.3
+MSTuring10M,No reassignment,89.881,83.519,3163,11.3,387.7
+Deep10M,Full,99.802,99.622,3163,302.8,481.8
+Deep10M,No reassignment,99.75,99.531,3163,6.0,166.4

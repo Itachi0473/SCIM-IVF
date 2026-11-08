@@ -1,0 +1,15 @@
+experiment=DEEP-1M FreewayML-inspired nine-scenario Triad; matched staged queries
+data_root=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_9scenarios_seed1234
+shared_initial_index=D:\ivf_code_bundle_portable\build\experiment_data\deep1m_freewayml_triad_ablation_B1_C2_seed1234_finalAPS_warmup100_20261026\shared_initial_500k_nlist512_seed1234.index.bin
+cases=G,A1,A2,B1,B2,B3,B4,C1,C2
+initial_vectors=500000; initial_nlist=512; inserts=100 batches x 5000; final_vectors=1000000
+queries=stage 000 initial index, then each insertion batch; 1000 matched queries at every stage
+query_budget=floor(current active vectors/100) exact total distance computations per query, including all live-centroid and vector distances
+query_budget_examples=stage 0: 5000; final stage: 10000
+query_threads=16 (parallel read-only fixed-budget queries)
+geometric_maintenance=disabled; PRD-triggered split checks are off
+load_split=leaf size > 2.2*T; merge=leaf size < 0.2*sqrt(current active N)
+capacity_split=leaf size > 1.05*sqrt(current active N), enabled only while live nlist <= sqrt(current active N)
+split_local_reassignment=radius 50, one pass; global center refresh=after each insertion batch from stored per-cluster mean statistics
+historical residual reference retained; LVQ=false; early_stop=false; metric=squared L2 on unit-normalized vectors; seed=1234
+initial_index_reused=true; final_indexes_saved=false; warmup=none (matches aligned Quake/LIRE fixed-budget run)

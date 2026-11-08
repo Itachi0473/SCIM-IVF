@@ -1,0 +1,12 @@
+dataset=SIFT1M original row order, 1M x 128 uint8
+queries=first 1000 official SIFT1M queries; exact L2 top-10 ground truth
+query_protocol=exactly 4 nearest coarse clusters per query; no total-vector scan cap
+full_ivf=all 1M vectors assigned to a 64-cluster IVF-Flat; training sample=20000, seed=1234, kmeans iterations=12
+prd_only=initial 50000 input-order vectors, nlist=64, seed=1234, 10 kmeans iterations; then 19 sequential 50000-vector insertions
+prd_threshold=0.1; GlobalFitOnly; PRD split enabled; load split, capacity split, merge, local split reassignment, and global center mean refresh disabled
+warmup=32 queries per index, excluded from metrics
+full_ivf_build_ms=513.843
+prd_build_plus_insert_maintenance_ms=1044.84
+prd_insert_maintenance_only_ms=698.986
+prd_split_count=0
+note=fixed nprobe controls lists, not vectors; scanned vector count varies with list sizes

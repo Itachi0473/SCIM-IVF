@@ -1,0 +1,14 @@
+experiment=Deep10M_2 standalone Quake insert-heavy workload; 100 query stages
+base=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+stage_truth=E:\Deep10M\deep10m_triad_quake_lire_100stages_n20_lire1000_seed1234_20261028\results\groundtruth_stage_top100.bin
+official_final_truth=C:\Users\29188\Downloads\Deep10M_2\groundtruth.public.10K.ibin
+base=10000000x96 FP32; squared L2; original file order; no normalization
+initial_vectors=1000000; initial_nlist=1000; inserts=900 batches x 10000
+query_schedule=100 stages, each after 9 insert batches; 10000 queries/stage
+query_budget=floor(current_active_vectors/20), centroid and vector distances included
+query_threads=16; topk=100; LVQ=false; early_stop=false; APS=false
+seed=1234; initial_index_reused=E:\Deep10M\deep10m_quake_100stages_n20_q16_seed1234_20261105\temporary_shared_initial.index.bin
+Quake=split_tau=250ns; delete_tau=250ns; alpha=0.9; hit_window=1000; min_partition=32; local_refinement_radius=50; one iteration
+final_index_output=none
+truth=exact brute-force prefix top-100; final prefix cross-checked with official Deep10M_2 truth

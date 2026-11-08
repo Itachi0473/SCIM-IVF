@@ -1,0 +1,13 @@
+experiment=YFCC10M Quake IH repeatability run; 100 query stages
+base=C:\Users\29188\Downloads\YFCC10m\base.10M.u8bin
+queries=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\query.first10k.official.u8bin
+stage_truth=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_first10k_official_queries_staged_truth_20261030\groundtruth_stage_top100.bin
+base=10000000x192 uint8; squared L2; original source order; no normalization
+query_source=official first 10000 queries
+initial_vectors=1000000; initial_nlist=1000; inserts=900 batches x 10000
+query_schedule=100 stages, each after 9 insert batches; 10000 queries/stage
+query_budget=floor(current_active_vectors/100), centroid and vector distances included
+query_threads=16; topk=100; LVQ=false; early_stop=false; APS=false
+seed=1234; initial_index_reused=D:\ivf_code_bundle_portable\build\experiment_data\yfcc10m_triad_quake_lire_first10k_n100_seed1234_verified_20261030\shared_initial_1m_nlist1000.index.bin
+Quake=split_tau=250ns; delete_tau=250ns; alpha=0.9; hit_window=1000; min_partition=32; local_refinement_radius=50; one iteration
+final_index_saved=false

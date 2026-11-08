@@ -1,0 +1,5 @@
+﻿variant,prd_threshold,initial_nlist,final_nlist,initial_vectors,insert_batches,inserted_vectors,query_count,topk,budget_total_distances,recall_at_10,query_mean_ms,query_p50_ms,query_p95_ms,query_p99_ms,build_ms,total_insert_and_maintenance_ms,load_splits,capacity_splits,prd_splits,recentered,merged
+Full,0.075,64,2166,50000,19,950000,1000,10,50000,0.993,1.8772638,1.6161,3.5402,4.5853,349.9955,58398.4095,732,375,1207,0,212
+No capacity split,0.075000003,64,1886,50000,19,950000,1000,10,50000,0.9936,1.8742191,1.7672,2.5855,3.0675,363.1898,102770.086,578,0,1378,0,134
+No PRD,0.075000003,64,1099,50000,19,950000,1000,10,50000,0.99,1.8458258,1.7416,2.5406,3.0572,891.0905,79904.0652,427,608,0,0,0
+No load balance,0.075000003,64,5190,50000,19,950000,1000,10,50000,0.9766,2.4504492,2.3601,3.224,4.0786,903.2398,565500.569,0,418,4708,0,0

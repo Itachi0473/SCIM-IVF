@@ -1,0 +1,35 @@
+experiment=Deep1M size-preserving radial expansion; PRD versus SCIM-Geom
+base_source=C:\Users\29188\Downloads\Deep10M_2\base.10M.fbin
+base_vectors=first 1,000,000 of validated 10,000,000 x 96 fbin
+base_storage=FP32 (native Deep data); no normalization or quantization
+queries=C:\Users\29188\Downloads\Deep10M_2\query.public.10K.fbin
+query_source=first 1,000 official Deep10M_2 query vectors
+metric=squared_L2
+seed_kmeans=1234
+seed_target_partitions=20261106
+initial_build=all first 1,000,000 vectors; kmeans nlist=1000; 10 iterations; one worker for deterministic reduction
+preprocessing=PRD disabled; load split, capacity split, and short-list merge enabled; refresh all centers to per-leaf means after each round; repeat to size-predicate fixed point
+capacity_predicate=K<=sqrt(N) and n_i>1.05*sqrt(N)
+load_predicate=n_i>2.2*N/K
+short_list_predicate=0<n_i<0.2*sqrt(N)
+diagnostic_prd_reference_reset=after size preprocessing only; reset_prd_references_for_diagnostic(); verify no marked leaves
+targets=first 256 then 512 of fixed-seed shuffled eligible partitions; selection excludes query/recall feedback; eligible size >= max(0.75*N/K, 2*0.2*sqrt(N)+64)
+scales=1.00 no-change control,1.10,1.25,1.50; each case starts from common preprocessed snapshot
+expansion=x'=c+s*(x-c) in FP32; back off only when candidate is nonfinite, unchanged, residual does not increase, or nearest common-start center changes; no clipping
+updates=one batched remove/add transaction per scale; all accepted updates generated once, normal add() routing, no forced leaf assignment; then maintenance
+comparison=SCIM enables PRD; SCIM-Geom disables only PRD; both enable capacity/load split and short-list merge, PRD threshold=0.075, GlobalFitOnly, split-local refinement radius=50 and 1 iteration, then refresh all centers to means
+query=first 1,000 official queries; exact current top-10 recomputed by exhaustive scan per case; total-distance budgets=N/100 include center distances; 16 query workers; no early stop
+affected_query_definition=at least one exact current top-10 ID is among the newly inserted IDs for accepted changed vectors
+results=summary, preprocessing rounds, shared-start and case partition diagnostics; no full neighbor result dump
+common_start_source=D:\ivf_code_bundle_portable\outputs\deep1m_size_preserving_prd_control_20261106\common_start_index.bin
+initial_build=reused validated preprocessed snapshot; no retraining or size-preprocessing replay
+preprocessing_K=1010
+preprocessing_size_min=276
+preprocessing_size_max=2150
+preprocessing_size_mean=990.099
+common_start_size_candidates=0
+common_start_prd_candidates=0
+target_eligibility_cutoff=742.574
+eligible_target_partitions=780
+common_start_snapshot=D:\ivf_code_bundle_portable\outputs\deep1m_size_preserving_prd_control_20261106\common_start_index.bin
+build_seconds=0

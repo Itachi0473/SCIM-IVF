@@ -1,0 +1,14 @@
+method=Current LIRE policy in AdaptiveHierarchicalIvf::maintain_quake_lire_policy
+dataset=DEEP-1M FreewayML nine scenarios; 96-D FP32 normalized vectors; squared L2
+case=B2
+initial_vectors=500000; initial_nlist=512; seed=1234; kmeans_iterations=10
+updates=100 x 5000 inserts; query at stage 0 and after every insertion batch
+LIRE=max_partition_size=1000; min_partition_size=32; local_refinement_radius=50 (includes seeds); iterations=1
+query_count=1000; query_threads=16; budget=floor(current_active_vectors/100), including centroid distances
+LVQ=false; early_stop=false; query stages use matching prepared exact top-10 truth
+initial_index=one shared in-memory 500k/512 index copied into each scenario; no scenario index snapshots saved
+final_vectors=1000000
+final_nlist=1481
+final_sse=368621
+final_mean_sse_per_vector=0.368621
+index_snapshots_saved=false

@@ -1,0 +1,3 @@
+round,K_before,capacity_candidates,load_candidates,short_candidates,load_splits,capacity_splits,merged_short,centers_updated,vectors_refreshed,K_after,min_size,max_size,mean_size,seconds
+1,1000,351,9,0,9,0,0,1009,1000000,1009,276,2198,991.08,0.885359
+2,1009,0,1,0,1,0,0,1010,1000000,1010,276,2150,990.099,0.0593075
